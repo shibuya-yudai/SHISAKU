@@ -15,7 +15,8 @@
 		93C60653281A574600451876 /* SHISAKUUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C60652281A574600451876 /* SHISAKUUITests.swift */; };
 		93C60655281A574600451876 /* SHISAKUUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C60654281A574600451876 /* SHISAKUUITestsLaunchTests.swift */; };
 		93C60662281A595200451876 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C60661281A595200451876 /* Network.swift */; };
-		93C60666281A79E200451876 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C60665281A79E200451876 /* Matrix.swift */; };
+		93C60668281AE8AD00451876 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C60667281AE8AD00451876 /* Node.swift */; };
+		93C6066A281AE8B500451876 /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C60669281AE8B500451876 /* Edge.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +48,8 @@
 		93C60652281A574600451876 /* SHISAKUUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHISAKUUITests.swift; sourceTree = "<group>"; };
 		93C60654281A574600451876 /* SHISAKUUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHISAKUUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		93C60661281A595200451876 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
-		93C60665281A79E200451876 /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
+		93C60667281AE8AD00451876 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		93C60669281AE8B500451876 /* Edge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edge.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,12 +100,11 @@
 		93C60636281A574400451876 /* SHISAKU */ = {
 			isa = PBXGroup;
 			children = (
+				93C6066B281AE8BC00451876 /* Entities */,
 				93C60637281A574400451876 /* SHISAKUApp.swift */,
 				93C60639281A574400451876 /* ContentView.swift */,
 				93C6063B281A574600451876 /* Assets.xcassets */,
 				93C6063D281A574600451876 /* Preview Content */,
-				93C60661281A595200451876 /* Network.swift */,
-				93C60665281A79E200451876 /* Matrix.swift */,
 			);
 			path = SHISAKU;
 			sourceTree = "<group>";
@@ -131,6 +132,16 @@
 				93C60654281A574600451876 /* SHISAKUUITestsLaunchTests.swift */,
 			);
 			path = SHISAKUUITests;
+			sourceTree = "<group>";
+		};
+		93C6066B281AE8BC00451876 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				93C60661281A595200451876 /* Network.swift */,
+				93C60669281AE8B500451876 /* Edge.swift */,
+				93C60667281AE8AD00451876 /* Node.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,7 +274,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93C60666281A79E200451876 /* Matrix.swift in Sources */,
+				93C60668281AE8AD00451876 /* Node.swift in Sources */,
+				93C6066A281AE8B500451876 /* Edge.swift in Sources */,
 				93C6063A281A574400451876 /* ContentView.swift in Sources */,
 				93C60638281A574400451876 /* SHISAKUApp.swift in Sources */,
 				93C60662281A595200451876 /* Network.swift in Sources */,
