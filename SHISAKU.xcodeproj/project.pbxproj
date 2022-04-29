@@ -18,6 +18,10 @@
 		93C60668281AE8AD00451876 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C60667281AE8AD00451876 /* Node.swift */; };
 		93C6066A281AE8B500451876 /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C60669281AE8B500451876 /* Edge.swift */; };
 		93C6066E281C2D0900451876 /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C6066D281C2D0900451876 /* NetworkTests.swift */; };
+		93C60672281C470B00451876 /* RepositoryProtcol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C60671281C470B00451876 /* RepositoryProtcol.swift */; };
+		93C60675281C479500451876 /* NetworkUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C60674281C479500451876 /* NetworkUsecase.swift */; };
+		93C60678281C47BD00451876 /* NetworkRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C60677281C47BD00451876 /* NetworkRepositoryImpl.swift */; };
+		93C6067A281C48D000451876 /* NetworkDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C60679281C48D000451876 /* NetworkDataStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +56,10 @@
 		93C60667281AE8AD00451876 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		93C60669281AE8B500451876 /* Edge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edge.swift; sourceTree = "<group>"; };
 		93C6066D281C2D0900451876 /* NetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
+		93C60671281C470B00451876 /* RepositoryProtcol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryProtcol.swift; sourceTree = "<group>"; };
+		93C60674281C479500451876 /* NetworkUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUsecase.swift; sourceTree = "<group>"; };
+		93C60677281C47BD00451876 /* NetworkRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepositoryImpl.swift; sourceTree = "<group>"; };
+		93C60679281C48D000451876 /* NetworkDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,7 +110,8 @@
 		93C60636281A574400451876 /* SHISAKU */ = {
 			isa = PBXGroup;
 			children = (
-				93C6066B281AE8BC00451876 /* Entities */,
+				93C60676281C47A600451876 /* Data */,
+				93C6066F281C46CE00451876 /* Domain */,
 				93C60637281A574400451876 /* SHISAKUApp.swift */,
 				93C60639281A574400451876 /* ContentView.swift */,
 				93C6063B281A574600451876 /* Assets.xcassets */,
@@ -145,6 +154,41 @@
 				93C60667281AE8AD00451876 /* Node.swift */,
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		93C6066F281C46CE00451876 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				93C60673281C473500451876 /* Usecase */,
+				93C60670281C46DE00451876 /* Protocol */,
+				93C6066B281AE8BC00451876 /* Entities */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		93C60670281C46DE00451876 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				93C60671281C470B00451876 /* RepositoryProtcol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		93C60673281C473500451876 /* Usecase */ = {
+			isa = PBXGroup;
+			children = (
+				93C60674281C479500451876 /* NetworkUsecase.swift */,
+			);
+			path = Usecase;
+			sourceTree = "<group>";
+		};
+		93C60676281C47A600451876 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				93C60677281C47BD00451876 /* NetworkRepositoryImpl.swift */,
+				93C60679281C48D000451876 /* NetworkDataStore.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,9 +322,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				93C60668281AE8AD00451876 /* Node.swift in Sources */,
+				93C60672281C470B00451876 /* RepositoryProtcol.swift in Sources */,
+				93C6067A281C48D000451876 /* NetworkDataStore.swift in Sources */,
+				93C60678281C47BD00451876 /* NetworkRepositoryImpl.swift in Sources */,
 				93C6066A281AE8B500451876 /* Edge.swift in Sources */,
 				93C6063A281A574400451876 /* ContentView.swift in Sources */,
 				93C60638281A574400451876 /* SHISAKUApp.swift in Sources */,
+				93C60675281C479500451876 /* NetworkUsecase.swift in Sources */,
 				93C60662281A595200451876 /* Network.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
