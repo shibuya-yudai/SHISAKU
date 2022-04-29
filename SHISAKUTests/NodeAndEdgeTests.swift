@@ -8,15 +8,7 @@
 import XCTest
 @testable import SHISAKU
 
-class SHISAKUTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+class NodeAndEdgeTests: XCTestCase {
     
     func testNode() throws {
         // create node
@@ -34,8 +26,6 @@ class SHISAKUTests: XCTestCase {
         node.updateDescription(newDescription: "new node description")
         XCTAssertTrue(node.getName() == "new_node_0")
         XCTAssertTrue(node.getDescription() == "new node description")
-        
-        
         
     }
     
