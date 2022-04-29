@@ -11,7 +11,7 @@
 		93C6063A281A574400451876 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C60639281A574400451876 /* ContentView.swift */; };
 		93C6063C281A574600451876 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93C6063B281A574600451876 /* Assets.xcassets */; };
 		93C6063F281A574600451876 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93C6063E281A574600451876 /* Preview Assets.xcassets */; };
-		93C60649281A574600451876 /* SHISAKUTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C60648281A574600451876 /* SHISAKUTests.swift */; };
+		93C60649281A574600451876 /* NodeAndEdgeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C60648281A574600451876 /* NodeAndEdgeTests.swift */; };
 		93C60653281A574600451876 /* SHISAKUUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C60652281A574600451876 /* SHISAKUUITests.swift */; };
 		93C60655281A574600451876 /* SHISAKUUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C60654281A574600451876 /* SHISAKUUITestsLaunchTests.swift */; };
 		93C60662281A595200451876 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C60661281A595200451876 /* Network.swift */; };
@@ -44,7 +44,7 @@
 		93C6063B281A574600451876 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		93C6063E281A574600451876 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		93C60644281A574600451876 /* SHISAKUTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SHISAKUTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		93C60648281A574600451876 /* SHISAKUTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHISAKUTests.swift; sourceTree = "<group>"; };
+		93C60648281A574600451876 /* NodeAndEdgeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeAndEdgeTests.swift; sourceTree = "<group>"; };
 		93C6064E281A574600451876 /* SHISAKUUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SHISAKUUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		93C60652281A574600451876 /* SHISAKUUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHISAKUUITests.swift; sourceTree = "<group>"; };
 		93C60654281A574600451876 /* SHISAKUUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHISAKUUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -122,7 +122,7 @@
 		93C60647281A574600451876 /* SHISAKUTests */ = {
 			isa = PBXGroup;
 			children = (
-				93C60648281A574600451876 /* SHISAKUTests.swift */,
+				93C60648281A574600451876 /* NodeAndEdgeTests.swift */,
 				93C6066D281C2D0900451876 /* NetworkTests.swift */,
 			);
 			path = SHISAKUTests;
@@ -290,7 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				93C6066E281C2D0900451876 /* NetworkTests.swift in Sources */,
-				93C60649281A574600451876 /* SHISAKUTests.swift in Sources */,
+				93C60649281A574600451876 /* NodeAndEdgeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

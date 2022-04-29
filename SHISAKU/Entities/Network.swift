@@ -87,6 +87,27 @@ extension NetWork {
         }
         return countDegree
     }
+    
+    // nodeに直接接続されているnodeの配列取得
+    func connectedNodes(node: Node) -> [Node] {
+        var connectedNodeList: [Node] = []
+        for edge in self.edgeList {
+            if(edge.getStartNodeId() == node.getId()){
+                // 対象nodeがstartNodeの時は、endNodeを配列に格納
+                let connectedNode = self.nodeList.first{
+                    $0.getId() == edge.getEndNodeId()
+                }
+                connectedNodeList.append(connectedNode!)
+            }else if(edge.getEndNodeId() == node.getId()){
+                // 対象nodeがendNodeの時は、startNodeを配列に格納
+                let connectedNode = self.nodeList.first{
+                    $0.getId() == edge.getStartNodeId()
+                }
+                connectedNodeList.append(connectedNode!)
+            }
+        }
+        return connectedNodeList
+    }
 }
 
 // Edge 関連
