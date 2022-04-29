@@ -26,10 +26,8 @@ class SHISAKUTests: XCTestCase {
         XCTAssertTrue(node.getName() == "node_0")
         XCTAssertTrue(node.getDescription() == "")
         XCTAssertTrue(node.getEdgeList().isEmpty)
-        XCTAssertTrue(node.getDegree() == 0)
-        XCTAssertTrue(node.getOutDegree() == 0)
-        XCTAssertTrue(node.equals(node: node))
-        XCTAssertFalse(node.equals(node: anotherNode))
+        XCTAssertTrue(node == node)
+        XCTAssertTrue(node != anotherNode)
         
         // update node
         node.updateName(newName: "new_node_0")
@@ -37,61 +35,64 @@ class SHISAKUTests: XCTestCase {
         XCTAssertTrue(node.getName() == "new_node_0")
         XCTAssertTrue(node.getDescription() == "new node description")
         
-        // create edge
-        let edge1 = node.createEdge(endNodeId: anotherNode.getId()) // 無向グラフ
-        let edge2 = node.createEdge(endNodeId: anotherNode.getId(), directional: true) // 有向グラフ
-        
-        // initial status of edge
-        XCTAssertTrue(edge1.getEndNodeId() == anotherNode.getId())
-        XCTAssertTrue(edge2.getEndNodeId() == anotherNode.getId())
-        XCTAssertFalse(edge1.isDirectional())
-        XCTAssertTrue(edge2.isDirectional())
-        
-        XCTAssertTrue(node.getDegree() == 2)
-        XCTAssertTrue(node.getOutDegree() == 1)
-        
-        // delete edge 1
-        XCTAssertTrue(node.deleteEdge(edgeId: edge1.getEdgeId()))
-        XCTAssertTrue(node.getDegree() == 1)
-        XCTAssertTrue(node.getOutDegree() == 1)
-        
-        // delete edge 2
-        XCTAssertTrue(node.deleteEdge(edgeId: edge2.getEdgeId()))
-        XCTAssertTrue(node.getDegree() == 0)
-        XCTAssertTrue(node.getOutDegree() == 0)
-        
-        // delete fake edge
-        let fakeUuid = UUID()
-        XCTAssertFalse(node.deleteEdge(edgeId: fakeUuid))
-        
         
         
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    
+    func testEdge() throws {
+        let uuid0 = UUID()
+        let uuid1 = UUID()
+        let uuid2 = UUID()
         
+        let edge0 = Edge(startNodeId: uuid0, endNodeId: uuid1)
+        let edge1 = Edge(startNodeId: uuid1, endNodeId: uuid2, directionalPattern: 1)
+        let edge2 = Edge(startNodeId: uuid1, endNodeId: uuid2, directionalPattern: 2)
+        
+        XCTAssertFalse(edge0.isDirectional())
+        XCTAssertTrue( edge1.isDirectional())
+        XCTAssertTrue( edge2.isDirectional())
+    }
+
+    func testNetwork() throws {
         // node test
         var network = NetWork()
         let node0 = network.createNode(name: "node0")
         let node1 = network.createNode(name: "node1")
-        //実際はusecase以下にUUIDしか流れないので、uuidからedgeを生成する
-        let node0Uuid = node0.getId()
-        let node1Uuid = node1.getId()
-        let fakeUuid  = UUID()
+        let node2 = network.createNode(name: "node2")
         
-        let edge1 = network.createEdge(startNodeId: node0Uuid, endNodeId: node1Uuid)
-        let edge2 = network.createEdge(startNodeId: node0Uuid, endNodeId: fakeUuid)
-        let edge3 = network.createEdge(startNodeId: fakeUuid,  endNodeId: node1Uuid)
-        XCTAssertTrue(edge1?.getEndNodeId() == node1Uuid)
-        XCTAssertTrue(edge2 == nil)
-        XCTAssertTrue(edge3 == nil)
+        // nodelistに生成したnodeが含まれているか
+        XCTAssertTrue(network.getNodeList().contains(node0))
         
+        let edge0 = network.createEdge(startNode: node0, endNode: node1)
+        let edge1 = network.createEdge(startNode: node1, endNode: node2, directionalPattern: 1)
         
+        // edgelistに生成したedgeが含まれているか
+        XCTAssertTrue(network.getEdgeList().contains(edge0))
+        
+        // 生成したedgeは指定nodeのuuidを保持しているか
+        XCTAssertTrue(edge0.getStartNodeId() == node0.getId())
+        XCTAssertTrue(edge0.getEndNodeId() == node1.getId())
+        
+        // 生成したedgeは無向・有向グラフの判定ができるか
+        XCTAssertFalse(edge0.isDirectional())
+        XCTAssertTrue(edge1.isDirectional())
+        
+        // nodeの次数
+        XCTAssertTrue(network.countDegree(node: node1) == 2)
+        XCTAssertTrue(network.countInDegree(node: node1) == 1)
+        XCTAssertTrue(network.countOutDegree(node: node1) == 1)
+        
+        // 削除系
+        
+        // nodeをnodeListから削除できるか
+        XCTAssertTrue(network.deleteNode(node: node0))
+        XCTAssertFalse(network.getNodeList().contains(node0))
+        // 削除されるnodeUuidを含むedgeを削除できているか
+        XCTAssertFalse(network.getEdgeList().contains(edge0))
+        
+        // edgeをedgeListから削除できるか
+        XCTAssertTrue(network.deleteEdge(edge: edge1))
+        XCTAssertFalse(network.getEdgeList().contains(edge1))
         
     }
     /**

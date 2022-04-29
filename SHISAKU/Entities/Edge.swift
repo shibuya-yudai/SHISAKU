@@ -7,22 +7,32 @@
 
 import Foundation
 
-struct Edge {
+struct Edge : Equatable{
     private var edgeId = UUID()
+    private var startNodeId: UUID
     private var endNodeId: UUID
-    private var directional: Bool
+    private var directionalPattern: Int
 
-    init(endNodeId: UUID, directional: Bool = false){
+    @discardableResult
+    init(startNodeId: UUID, endNodeId: UUID, directionalPattern: Int = 0){
+        self.startNodeId = startNodeId
         self.endNodeId = endNodeId
-        self.directional = directional
+        self.directionalPattern = directionalPattern
     }
+    
     func getEdgeId() -> UUID {
         return edgeId
+    }
+    func getStartNodeId() -> UUID {
+        return self.startNodeId
     }
     func getEndNodeId() -> UUID {
         return self.endNodeId
     }
     func isDirectional() -> Bool {
-        return self.directional
+        switch directionalPattern {
+        case 0:  return false // 無向グラフの場合
+        default: return true  // 有向グラフの場合
+        }
     }
 }

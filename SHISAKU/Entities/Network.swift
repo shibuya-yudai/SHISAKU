@@ -7,15 +7,35 @@
 import Foundation
 
 struct NetWork {
-    var nodeList: [Node]
-    var relationPatterns: [Int]
+    private var nodeList: [Node]
+    private var edgeList: [Edge]
+    private var relationPatterns: [Int]
     
-    init(nodeList: [Node] = [], relationPatterns: [Int] = []){
+    init(nodeList: [Node] = [], edgeList: [Edge] = [], relationPatterns: [Int] = []){
         self.nodeList = nodeList
+        self.edgeList = edgeList
         self.relationPatterns = relationPatterns
     }
     
-    //Create Node and Edge
+    func getNodeList() -> [Node] {
+        return self.nodeList
+    }
+    func getEdgeList() -> [Edge] {
+        return self.edgeList
+    }
+    
+
+    /**
+    //Function
+    func isLinked(Node, Node) {
+        
+    }
+    */
+}
+
+// Node 関連
+extension NetWork {
+    //CRUD Node
     @discardableResult
     mutating func createNode(name: String) -> Node{
         let node = Node(name: name)
@@ -23,18 +43,12 @@ struct NetWork {
         return node
     }
     
-    func createEdge(startNodeId: UUID, endNodeId: UUID) -> Edge?{
-        var startNode = getNodeFromUUID(uuid: startNodeId)
-        if(isExsistsNodeFromUUID(uuid: endNodeId)){
-            ///startNodeがnilの時はそのままnilが返却される
-            return startNode?.createEdge(endNodeId: endNodeId)
-        }
-        return nil
-    }
-    
-    mutating func deleteNode(nodeId: UUID) -> Bool{
-        for (i, node) in self.nodeList.enumerated(){
-            if(node.getId() == nodeId){
+    mutating func deleteNode(node: Node) -> Bool{
+        // 対象nodeを含むedgeを先に削除
+        deleteEdgesContainNode(node: node)
+        // nodeの削除
+        for (i, nodeInList) in self.nodeList.enumerated(){
+            if(nodeInList.getId() == node.getId()){
                 self.nodeList.remove(at: i)
                 return true
             }
@@ -42,70 +56,74 @@ struct NetWork {
         return false
     }
     
-    /**
-    //Function
-    func isLinked(Node, Node) {
-        
-    }
-    
-    func connectedNodes(Node) {
-        
-    }
-     
-     func getStringRelation(edgeId: UUID) -> String {
-         let edge = getEdgeFromUUID(uuid: edgeId)
-         if(edge != nil){
-             if( edge!.isDirectional()){
-                 return self.getName() + "-->" +
-             }
-         }
-         return ""
-     }
-    */
-}
-
-// UUIDを使ってNodeとEdgeの検索をするとき
-extension NetWork {
-    //input node UUID
-    func getNodeFromUUID(uuid: UUID) -> Node? {
-        for node in self.nodeList {
-            if(node.getId() == uuid){
-                return node
+    // nodeの次数
+    func countDegree(node: Node) -> Int {
+        var countDegree = 0
+        for edge in self.edgeList {
+            if(edge.getStartNodeId() == node.getId() ||
+               edge.getEndNodeId()   == node.getId()   ){
+                countDegree += 1
             }
         }
-        return nil
+        return countDegree
     }
-    func isExsistsNodeFromUUID(uuid: UUID) -> Bool {
-        for node in self.nodeList {
-            if(node.getId() == uuid){
+    // nodeの入次数
+    func countInDegree(node: Node) -> Int {
+        var countDegree = 0
+        for edge in self.edgeList {
+            if(edge.getEndNodeId()   == node.getId()   ){
+                countDegree += 1
+            }
+        }
+        return countDegree
+    }
+    // nodeの出次数
+    func countOutDegree(node: Node) -> Int {
+        var countDegree = 0
+        for edge in self.edgeList {
+            if(edge.getStartNodeId() == node.getId()){
+                countDegree += 1
+            }
+        }
+        return countDegree
+    }
+}
+
+// Edge 関連
+extension NetWork {
+    //CRUD Edge
+    @discardableResult
+    mutating func createEdge(startNode: Node, endNode: Node, directionalPattern: Int = 0) -> Edge{
+        let edge = Edge(startNodeId: startNode.getId(), endNodeId: endNode.getId(), directionalPattern: directionalPattern)
+        edgeList.append(edge)
+        return edge
+    }
+    
+    mutating func deleteEdge(edge: Edge) -> Bool{
+        for (i, edgeInList) in self.edgeList.enumerated(){
+            if(edgeInList.getEdgeId() == edge.getEdgeId()){
+                self.edgeList.remove(at: i)
                 return true
             }
         }
         return false
     }
     
-    //input edge UUID
-    func getEdgeFromUUID(uuid: UUID) -> Edge? {
-        for node in self.nodeList {
-            for edge in node.getEdgeList(){
-                if(edge.getEdgeId() == uuid){
-                    return edge
-                }
+    mutating func deleteEdgesContainNode(node: Node) {
+        var deletedIndexList: [Int] = []
+        //削除するedgeのインデックスをリストに保持
+        for (i, edgeInList) in self.edgeList.enumerated(){
+            if(edgeInList.getStartNodeId() == node.getId() ||
+               edgeInList.getEndNodeId()   == node.getId()   ){
+                deletedIndexList.append(i)
             }
         }
-        return nil
-    }
-    func isExsistsEdgeFromUUID(uuid: UUID) -> Bool {
-        for node in self.nodeList {
-            for edge in node.getEdgeList(){
-                if(edge.getEdgeId() == uuid){
-                    return true
-                }
-            }
+        //リストの後ろ側から順にエッジを削除
+        for i in deletedIndexList.reversed() {
+            self.edgeList.remove(at: i)
         }
-        return false
     }
+    
 }
-
 
 

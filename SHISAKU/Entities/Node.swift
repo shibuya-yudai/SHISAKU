@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Node {
+struct Node : Equatable{
     private let id = UUID()
     private var edgeList: [Edge] = []
     private var name: String
@@ -30,51 +30,11 @@ struct Node {
         return self.edgeList
     }
     
-    func getDegree() -> Int {
-        return self.edgeList.count
-    }
-    func getOutDegree() -> Int {
-        var count:Int = 0
-        for edge in self.edgeList {
-            if(edge.isDirectional()){
-                count += 1
-            }
-        }
-        return count
-    }
     
-    //node
     mutating func updateName(newName: String) {
         self.name = newName
     }
     mutating func updateDescription(newDescription: String) {
         self.description = newDescription
     }
-    
-    func equals(node: Node) -> Bool{
-        return self.id == node.id
-    }
-    
-    //edge
-    @discardableResult
-    mutating func createEdge(endNodeId: UUID, directional: Bool = false) -> Edge {
-        let edge = Edge(endNodeId: endNodeId ,directional: directional)
-        edgeList.append(edge)
-        return edge
-    }
-
-    @discardableResult
-    mutating func deleteEdge(edgeId: UUID) -> Bool {
-        for (i, edge) in self.edgeList.enumerated(){
-            if(edge.getEdgeId() == edgeId){
-                self.edgeList.remove(at: i)
-                return true
-            }
-        }
-        return false
-    }
-    
-
-    
-
 }
