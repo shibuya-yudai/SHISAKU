@@ -17,6 +17,7 @@
 		93C60662281A595200451876 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C60661281A595200451876 /* Network.swift */; };
 		93C60668281AE8AD00451876 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C60667281AE8AD00451876 /* Node.swift */; };
 		93C6066A281AE8B500451876 /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C60669281AE8B500451876 /* Edge.swift */; };
+		93C6066E281C2D0900451876 /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C6066D281C2D0900451876 /* NetworkTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		93C60661281A595200451876 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		93C60667281AE8AD00451876 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		93C60669281AE8B500451876 /* Edge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edge.swift; sourceTree = "<group>"; };
+		93C6066D281C2D0900451876 /* NetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				93C60648281A574600451876 /* SHISAKUTests.swift */,
+				93C6066D281C2D0900451876 /* NetworkTests.swift */,
 			);
 			path = SHISAKUTests;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93C6066E281C2D0900451876 /* NetworkTests.swift in Sources */,
 				93C60649281A574600451876 /* SHISAKUTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

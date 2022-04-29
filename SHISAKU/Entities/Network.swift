@@ -6,7 +6,7 @@
 //
 import Foundation
 
-struct NetWork {
+class NetWork {
     private var nodeList: [Node]
     private var edgeList: [Edge]
     private var relationPatterns: [Int]
@@ -37,13 +37,13 @@ struct NetWork {
 extension NetWork {
     //CRUD Node
     @discardableResult
-    mutating func createNode(name: String) -> Node{
+    func createNode(name: String) -> Node{
         let node = Node(name: name)
         self.nodeList.append(node)
         return node
     }
     
-    mutating func deleteNode(node: Node) -> Bool{
+    func deleteNode(node: Node) -> Bool{
         // 対象nodeを含むedgeを先に削除
         deleteEdgesContainNode(node: node)
         // nodeの削除
@@ -93,13 +93,13 @@ extension NetWork {
 extension NetWork {
     //CRUD Edge
     @discardableResult
-    mutating func createEdge(startNode: Node, endNode: Node, directionalPattern: Int = 0) -> Edge{
+    func createEdge(startNode: Node, endNode: Node, directionalPattern: Int = 0) -> Edge{
         let edge = Edge(startNodeId: startNode.getId(), endNodeId: endNode.getId(), directionalPattern: directionalPattern)
         edgeList.append(edge)
         return edge
     }
     
-    mutating func deleteEdge(edge: Edge) -> Bool{
+    func deleteEdge(edge: Edge) -> Bool{
         for (i, edgeInList) in self.edgeList.enumerated(){
             if(edgeInList.getEdgeId() == edge.getEdgeId()){
                 self.edgeList.remove(at: i)
@@ -109,7 +109,7 @@ extension NetWork {
         return false
     }
     
-    mutating func deleteEdgesContainNode(node: Node) {
+    func deleteEdgesContainNode(node: Node) {
         var deletedIndexList: [Int] = []
         //削除するedgeのインデックスをリストに保持
         for (i, edgeInList) in self.edgeList.enumerated(){

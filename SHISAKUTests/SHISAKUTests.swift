@@ -53,48 +53,7 @@ class SHISAKUTests: XCTestCase {
         XCTAssertTrue( edge2.isDirectional())
     }
 
-    func testNetwork() throws {
-        // node test
-        var network = NetWork()
-        let node0 = network.createNode(name: "node0")
-        let node1 = network.createNode(name: "node1")
-        let node2 = network.createNode(name: "node2")
-        
-        // nodelistに生成したnodeが含まれているか
-        XCTAssertTrue(network.getNodeList().contains(node0))
-        
-        let edge0 = network.createEdge(startNode: node0, endNode: node1)
-        let edge1 = network.createEdge(startNode: node1, endNode: node2, directionalPattern: 1)
-        
-        // edgelistに生成したedgeが含まれているか
-        XCTAssertTrue(network.getEdgeList().contains(edge0))
-        
-        // 生成したedgeは指定nodeのuuidを保持しているか
-        XCTAssertTrue(edge0.getStartNodeId() == node0.getId())
-        XCTAssertTrue(edge0.getEndNodeId() == node1.getId())
-        
-        // 生成したedgeは無向・有向グラフの判定ができるか
-        XCTAssertFalse(edge0.isDirectional())
-        XCTAssertTrue(edge1.isDirectional())
-        
-        // nodeの次数
-        XCTAssertTrue(network.countDegree(node: node1) == 2)
-        XCTAssertTrue(network.countInDegree(node: node1) == 1)
-        XCTAssertTrue(network.countOutDegree(node: node1) == 1)
-        
-        // 削除系
-        
-        // nodeをnodeListから削除できるか
-        XCTAssertTrue(network.deleteNode(node: node0))
-        XCTAssertFalse(network.getNodeList().contains(node0))
-        // 削除されるnodeUuidを含むedgeを削除できているか
-        XCTAssertFalse(network.getEdgeList().contains(edge0))
-        
-        // edgeをedgeListから削除できるか
-        XCTAssertTrue(network.deleteEdge(edge: edge1))
-        XCTAssertFalse(network.getEdgeList().contains(edge1))
-        
-    }
+    
     /**
      func testPerformanceExample() throws {
          // This is an example of a performance test case.
